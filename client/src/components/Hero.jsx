@@ -5,6 +5,20 @@ import TypingAnimation from './TypingAnimation';
 import Particles from './Particles';
 
 const Hero = () => {
+  // Function to handle PDF download
+  const handleDownload = () => {
+    // Using the correct path to the PDF file in the public folder
+    const pdfUrl = process.env.PUBLIC_URL + '/abdulbari.pdf';
+    
+    // Create a temporary anchor element to trigger download
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    // link.download = 'Muhammad-Abdul-Bari-CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
       <Particles quantity={100} />
@@ -112,9 +126,8 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 animate-shine"></div>
             </motion.a>
             
-            <motion.a 
-              href="/cv.pdf" 
-              download
+            <motion.button 
+              onClick={handleDownload}
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: "0 10px 30px rgba(103, 232, 249, 0.3)"
@@ -130,7 +143,7 @@ const Hero = () => {
               </span>
               <div className="absolute inset-0 bg-cyan-700/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 animate-shine"></div>
-            </motion.a>
+            </motion.button>
           </motion.div>
         </motion.div>
       </div>
